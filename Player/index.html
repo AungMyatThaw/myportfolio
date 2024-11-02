@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Music Player</title>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<script src="https://kit.fontawesome.com/cbd8629d2f.js" crossorigin="anonymous"></script>
+
+		<script type="text/javascript" src="song.js"></script>
+	</head>
+<body>
+	<div class="container">
+
+		<div class="player">
+			
+			<!--- for nav--->
+
+			<nav>
+				<div class="navi">
+					<a href="../index.html">
+					<i class="fa-solid fa-arrow-left"></i>
+					</a>
+				</div>
+				<div class="navi">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</nav>
+
+			<!-- for song info-->
+			<div class="info" id="songInfo">
+			
+			</div>
+
+			<div class="play">
+
+				<audio type="audio/mpeg" src="sample.mp3" id="song"></audio>
+				<input type="range" value="0" id="progress">
+			</div>
+
+			<!-- for controls-->
+			<div class="control">
+
+				<div class="indexBtn" onclick="indexHandler('prev')">
+					<i class="fa-solid fa-backward"></i>
+				</div>
+
+				<div class="playBtn" onclick="play()">
+					<i class="fa-solid fa-play" id="playBtn"></i>
+				</div>
+				
+				<div class="indexBtn" onclick="indexHandler('next')">
+					<i class="fa-solid fa-forward"></i>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		
+		let x = 0;
+		let progress = document.getElementById('progress')
+		let song = document.getElementById('song')
+		let playBtn = document.getElementById('playBtn')
+
+		song.onloadedmetadata =function() {
+			progress.max = song.duration
+			progress.value = song.currentTime
+		}
+
+		songHandler();
+
+		function songHandler(index = 0){
+			let html = `
+					<img 
+						src="${songs[index]['cover']}"
+						class="cover"
+					/> 
+					<h2>${songs[index]['title']}</h2>
+					<p>${songs[index]['name']}</p>
+						`
+			song.src = songs[index]['song']
+
+				let songInfo = document.getElementById('songInfo');
+
+				songInfo.innerHTML = html
+
+			}
+
+			function indexHandler(status = 'next'){
+
+				if(status == 'next'){
+					if(songs.length > x){
+						x += 1;
+					}
+				}
+				else {
+					if(x > 0){
+						x -= 1;
+					}
+				}
+
+				songHandler(x)
+
+			}
+
+			function play() {
+				if(playBtn.classList.contains('fa-pause')){
+
+					song.pause()
+
+					playBtn.classList.remove('fa-pause')
+					playBtn.classList.add('fa-play')
+				}
+				else {
+					song.play()
+
+					playBtn.classList.add('fa-pause')
+					playBtn.classList.remove('fa-play')
+				}
+			}
+
+			if(song.play()){
+				setInterval(() => {
+					progress.value = song.currentTime
+				},500)
+			}
+
+			// 
+			progress.onchange = function () {
+				song.currentTime = progress.value
+
+				song.play()
+
+				playBtn.classList.add('fa-pause')
+				playBtn.classList.remove('fa-play')
+
+			}
+		
+	</script>
+
+</body>
+</html>
