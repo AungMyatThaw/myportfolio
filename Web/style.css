@@ -23,18 +23,43 @@ left: 50%;
 }
 nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: chocolate;
     color: white;
     height: 40px;
     align-items: center;
+    padding: 2px;
 }
+nav a{
+    color: white;
+    text-decoration: none;
+    
+}
+@media (max-width: 960px) {
+    nav {
+        flex-direction: row;  /* Stack links vertically */
+        align-items: center;
+        height: auto; /* Allow navbar to expand */
+    }
+
+    nav a {
+        
+        width: 100%;  /* Make links take full width */
+        text-align: center;
+    }
+}
+
+ /* Main navigation bar */
+/* nav div{
+    max-width: 100px;
+}
+
 .navone{
     margin-left: 400px;
 }
 .navthree{
     margin-right: 400px;
-}
+} */
 .about{
     border: 3px solid chocolate;
     width: 95%;

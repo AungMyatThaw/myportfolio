@@ -5,7 +5,7 @@ general
 body {
   font: 300 16px/1.5 'Roboto', sans-serif;
   color: #333;
-  background: #e3e9ff;
+  background: #dde0ec;
 }
 
 .container {
@@ -34,12 +34,12 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #4ac7be;
+  border-color: #4a67c7;
   outline: none;
 }
 
 .btn-primary {
-  background: #4ac7be;
+  background: #4a67c7;
   border: none;
   padding: 10px;
   display: inline-block;
@@ -119,7 +119,7 @@ list holder
 
 .listHolder li:before {
   content: counter(step-counter);
-  background: #4ac7be;
+  background: #4a67c7;
   color: #fff;
   font-size: 14px;
   padding: 0px 6px;
